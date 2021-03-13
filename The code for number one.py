@@ -6,8 +6,8 @@ from os import path
 
 def main():
     surverys_df = pd.read_csv('surveys.csv')
-    weight_and_hindfoot_df = surverys_df.groupby(['weight','hindfoot_length'])
-    print(weight_and_hindfoot_df.shape)
+    sns.set()
+    sns.relplot(x = 'weight',y='hindfoot_length',data = surverys_df,kind= 'scatter')
 
 main()
 
