@@ -4,7 +4,7 @@ import matplotlib as plt
 import os
 from os import path
 
-def main():
+def the_two_clouds():
     surverys_df = pd.read_csv('surveys.csv')
     species_df = pd.read_csv('species.csv')
     sns.set()
@@ -35,5 +35,13 @@ def main():
     species_grouped_df = left_merge.groupby(['species'])['weight'].mean()
     print(species_grouped_df)
 
-main()
+def violin_plot():
+    surverys_df = pd.read_csv('surveys.csv')
+    by_size_df = pd.DataFrame(surverys_df,columns = ['species_id'])
+    print(by_size_df)
+#the_two_clouds()
+violin_plot()
+
+
+
 
