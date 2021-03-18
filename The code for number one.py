@@ -14,13 +14,13 @@ def main():
     #let's see if we can find what correlatation to be exact 
     left_merge = pd.merge(left = surverys_df, right = species_df, how ='left', left_on='species_id',right_on ='species_id')
     print(left_merge.head(1))
-    filter_by_albigula_df = left_merge[left_merge.species == 'albigula']
-    filter_by_baileyi_df = left_merge[left_merge.species == 'baileyi']
-    #print(filter_by_species_df.shape)
-    sns.relplot(x = 'weight',y='hindfoot_length',data = filter_by_albigula_df,kind= 'scatter')
-    sns.relplot(x = 'weight',y='hindfoot_length',data = filter_by_baileyi_df,kind= 'scatter')
-    #species_grouped_df = left_merge.groupby(['species'])['weight'].mean()
-    #print(species_grouped_df)
+    list_of_bottom_cloud_species = ['albigula','baileyi']
+    left_merge.species.isin(list_of_bottom_cloud_species)
+    
+    filter_by_bottom_cloud = left_merge[left_merge.species.isin(list_of_bottom_cloud_species)]
+    sns.relplot(x = 'weight',y='hindfoot_length',data = filter_by_bottom_cloud,kind= 'scatter')
+    species_grouped_df = left_merge.groupby(['species'])['weight'].mean()
+    print(species_grouped_df)
 
 main()
 
