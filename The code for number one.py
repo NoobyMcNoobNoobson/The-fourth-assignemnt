@@ -37,8 +37,16 @@ def the_two_clouds():
 
 def violin_plot():
     surverys_df = pd.read_csv('surveys.csv')
-    by_size_df = pd.DataFrame(surverys_df,columns = ['species_id'])
-    print(by_size_df)
+    counter = surverys_df['species_id'].value_counts()
+    filtered_list = surverys_df[surverys_df['species_id'].isin(['DM','PP'])]
+    sns.violinplot(x = 'species_id' ,y='hindfoot_length',data=filtered_list)
+
+def dist_plot():
+    surverys_df = pd.read_csv('surveys.csv')
+    most_common_species = surverys_df[surverys_df.species_id == 'DM']
+    sns.histplot(most_common_species,x='weight')
+
+dist_plot()
 #the_two_clouds()
 violin_plot()
 
